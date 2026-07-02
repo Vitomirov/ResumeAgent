@@ -15,6 +15,7 @@ class ResumeGenerationService:
                 profile_header=input_data.profile_header,
                 reference_education=input_data.reference_education,
                 reference_background=input_data.reference_background,
+                reference_certifications=input_data.reference_certifications,
                 selected_experience=input_data.selected_experience,
                 selected_projects=input_data.selected_projects,
                 selected_skills=input_data.selected_skills,

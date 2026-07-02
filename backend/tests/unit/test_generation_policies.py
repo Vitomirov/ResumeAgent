@@ -94,7 +94,9 @@ def test_apply_profile_header_replaces_generated_name() -> None:
 def test_finalize_generated_resume_injects_profile() -> None:
     body = "## Professional Summary\n\nSummary"
     merged = finalize_generated_resume(body, MASTER)
-    assert merged.startswith("# Jane Doe")
+    assert '<h1 class="resume-name">Jane Doe</h1>' in merged
+    assert "jane@example.com" in merged
+    assert "## Professional Summary" in merged
 
 
 def test_parse_rewritten_content_extracts_sections() -> None:

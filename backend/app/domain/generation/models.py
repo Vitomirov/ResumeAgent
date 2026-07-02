@@ -8,6 +8,7 @@ class ResumeGeneratorInput:
     profile_header: str
     reference_education: str
     reference_background: str
+    reference_certifications: str
     selected_experience: str
     selected_projects: str
     selected_skills: str

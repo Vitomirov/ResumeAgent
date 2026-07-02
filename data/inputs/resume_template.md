@@ -10,6 +10,10 @@
 
 {{ skills }}
 
+## Certifications
+
+{{ certifications }}
+
 ## Professional Background
 
 {{ background }}

@@ -22,6 +22,7 @@ class ResumeGenerator:
             resume_template=input_data.resume_template,
             reference_education=input_data.reference_education,
             reference_background=input_data.reference_background,
+            reference_certifications=input_data.reference_certifications,
             selected_experience=input_data.selected_experience,
             selected_projects=input_data.selected_projects,
             selected_skills=input_data.selected_skills,

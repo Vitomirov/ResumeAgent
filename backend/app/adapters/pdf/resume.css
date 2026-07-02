@@ -1,69 +1,255 @@
 @page {
   size: A4;
-  margin: 12mm 14mm;
+  margin: 14mm 16mm;
 }
 
 html {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 10pt;
-  line-height: 1.35;
-  color: #1a1a1a;
+  line-height: 1.4;
+  color: #333333;
 }
 
 body {
   margin: 0;
 }
 
+/* Page wrapper for all resume content */
 main.resume {
   width: 100%;
 }
 
-main.resume > h1:first-of-type {
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 22pt;
-  font-weight: 700;
-  color: #3d7a89;
-  margin: 0 0 2pt;
-  padding-bottom: 4pt;
-  border-bottom: 1pt solid #3d7a89;
+/* ── Header ── */
+/* Name + contact block at top of resume */
+.resume-header {
+  text-align: center;
+  margin: 0 0 15pt;
+  padding-bottom: 7pt;
+  border-bottom: 1.5pt solid #2d7f96;
 }
 
-main.resume > p:first-of-type {
-  margin: 6pt 0 10pt;
-  font-size: 9.5pt;
+/* Candidate full name in header */
+.resume-name {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 28pt;
+  font-weight: 700;
+  color: #2A7B88;
+  margin: 0 0 6pt;
+  line-height: 1.1;
+  letter-spacing: 0.3pt;
+}
+
+/* Phone, email, and link line under the name */
+.resume-contact {
+  margin: 0;
+  font-size: 9pt;
+  color: #333333;
+  line-height: 1.4;
+}
+
+.resume-contact a {
+  color: #2A7B88;
+  text-decoration: none;
+  font-style: normal;
+}
+
+/* Hide duplicate markdown name/contact only when they immediately follow the HTML header */
+main.resume > .resume-header + h1,
+main.resume > .resume-header + p,
+main.resume > .resume-header + h1 + p {
+  display: none;
+}
+
+main.resume > h1:first-of-type {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 24pt;
+  font-weight: 700;
+  color: #2A7B88;
+  text-align: center;
+  margin: 0 0 6pt;
+  padding-bottom: 7pt;
+  border-bottom: 1.5pt solid #2A7B88;
+}
+
+/* Markdown-only fallback: contact line directly under the name heading */
+main.resume > h1:first-of-type + p {
+  text-align: center;
+  margin: 0 0 15pt;
+  font-size: 9pt;
   color: #333333;
 }
 
+/* ── Section headings ── */
 h2 {
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 12pt;
+  font-size: 14pt;
   font-weight: 700;
-  color: #3d7a89;
-  text-transform: none;
-  letter-spacing: 0;
-  border-bottom: none;
-  margin: 12pt 0 5pt;
-  padding-bottom: 0;
+  color: #2A7B88;
+  text-align: left;
+  margin: 18pt 0 6pt;
+  padding: 0;
+  border: none;
 }
 
 h3 {
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 10.5pt;
   font-weight: 700;
-  margin: 8pt 0 3pt;
+  color: #333333;
+  margin: 7pt 0 2pt;
 }
 
 p {
-  margin: 0 0 4pt;
+  margin: 0 0 5pt;
+  color: #333333;
 }
 
+main.resume > h2:first-of-type,
+.resume-header + h2 {
+  margin-top: 0;
+}
+
+/* ── Summary ── */
+/* Professional Summary paragraph directly under its section heading */
+main.resume > h2 + p {
+  text-align: left;
+  font-size: 11pt;
+  line-height: 1.45;
+  margin-bottom: 6pt;
+}
+
+/* ── Skills & Abilities (two-column) ── */
+/* Two-column skill category list under Skills & Abilities */
+.skills-list {
+  columns: 2;
+  column-gap: 26pt;
+  margin: 4pt 0 6pt;
+  padding: 0;
+  list-style: none;
+}
+
+.skills-list li {
+  break-inside: avoid;
+  position: relative;
+  padding-left: 12pt;
+  margin-bottom: 3.5pt;
+  font-size: 9.4pt;
+  line-height: 1.4;
+  color: #333333;
+}
+
+.skills-list li::before {
+  content: "";
+  position: absolute;
+  left: 1pt;
+  top: 0.5em;
+  width: 3.5pt;
+  height: 3.5pt;
+  background: #2A7B88;
+}
+
+.skills-list li strong {
+  font-weight: 700;
+  color: #333333;
+}
+
+/* ── Experience & background entries ── */
+/* Single experience, project, or background item container */
+.entry-block {
+  margin-bottom: 11pt;
+  page-break-inside: avoid;
+}
+
+/* Project/company title row (name + links) and role/dates row layout */
+.entry-header,
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12pt;
+  width: 100%;
+}
+
+/* Top row of an entry: company/project name and optional links */
+.entry-header {
+  margin-bottom: 1pt;
+}
+
+/* Second row of an entry: role/context and date range */
+.entry-meta {
+  margin-bottom: 3pt;
+}
+
+/* Company or project name (left side of entry header) */
+.entry-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.entry-title strong {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 11pt;
+  font-weight: 700;
+  color: #333333;
+}
+
+/* Live demo / source code links (right side of entry header) */
+.entry-links {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 9pt;
+  font-style: italic;
+  text-align: right;
+}
+
+.entry-links a {
+  color: #2A7B88;
+  text-decoration: underline;
+  font-style: italic;
+}
+
+/* Job title and context (left side of entry meta row) */
+.entry-role {
+  flex: 1 1 auto;
+  font-size: 9.5pt;
+  font-style: italic;
+  color: #555555;
+}
+
+/* Employment or project date range (right side of entry meta row) */
+.entry-dates {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 9.5pt;
+  color: #333333;
+  text-align: right;
+}
+
+/* Professional Background entries (title + dates only, no role row) */
+.background-entry .entry-header {
+  margin-bottom: 3pt;
+}
+
+/* ── Bullets ── */
 ul,
 ol {
-  margin: 0 0 6pt;
-  padding-left: 14pt;
+  margin: 0 0 5pt;
+  padding-left: 15pt;
 }
 
-li {
+/* Achievement bullets under an experience or project entry */
+ul.entry-bullets {
+  margin: 0 0 2pt;
+  padding-left: 15pt;
+  list-style-type: disc;
+}
+
+ul.entry-bullets li {
+  font-size: 11pt;
+  line-height: 1.4;
   margin-bottom: 2pt;
+  padding-left: 2pt;
+  color: #333333;
 }
 
 li > p {
@@ -75,8 +261,9 @@ strong {
 }
 
 a {
-  color: #3d7a89;
+  color: #2A7B88;
   text-decoration: underline;
+  font-style: italic;
 }
 
 hr {
@@ -85,31 +272,16 @@ hr {
   margin: 8pt 0;
 }
 
-.entry-header,
-.entry-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12pt;
-  margin-bottom: 2pt;
+/* ── Education & certifications ── */
+main.resume h2 + ul {
+  margin-top: 4pt;
 }
 
-.entry-title {
-  font-weight: 700;
+main.resume h3 + ul {
+  margin-bottom: 5pt;
 }
 
-.entry-links,
-.entry-dates {
-  white-space: nowrap;
+main.resume h3 + ul li {
   font-size: 9.5pt;
-}
-
-.entry-meta {
-  font-size: 9.5pt;
-  margin-bottom: 4pt;
-}
-
-main.resume h2 + p strong {
-  display: inline-block;
-  min-width: 7em;
+  line-height: 1.4;
 }

@@ -22,6 +22,51 @@ def extract_profile_header(master_resume: str) -> str:
     return "\n".join(lines)
 
 
+def extract_master_subsections(master_resume: str, section_heading: str) -> dict[str, str]:
+    """Extract ### subsection bodies under a ## section in the master resume."""
+    section_body = extract_master_section(master_resume, section_heading)
+    if not section_body:
+        return {}
+
+    buckets: dict[str, list[str]] = {}
+    current: str | None = None
+
+    for line in section_body.splitlines():
+        if line.startswith("### "):
+            current = line[4:].strip()
+            buckets.setdefault(current, [])
+            continue
+        if current is not None:
+            buckets.setdefault(current, []).append(line)
+
+    return {heading: "\n".join(lines).strip() for heading, lines in buckets.items()}
+
+
+def omit_template_section(template: str, section_heading: str) -> str:
+    """Remove a top-level ## section block from a resume template."""
+    target = f"## {section_heading}".lower()
+    lines = template.splitlines()
+    kept: list[str] = []
+    skipping = False
+    removed = False
+
+    for line in lines:
+        if line.startswith("## "):
+            if line.strip().lower() == target:
+                skipping = True
+                removed = True
+                continue
+            skipping = False
+        if not skipping:
+            kept.append(line)
+
+    if not removed:
+        return template
+
+    text = "\n".join(kept).strip()
+    return f"{text}\n" if text else ""
+
+
 def extract_master_section(master_resume: str, *headings: str) -> str:
     """Extract body text for the first matching ## heading in the master resume."""
     normalized = {heading.lower(): heading for heading in headings}

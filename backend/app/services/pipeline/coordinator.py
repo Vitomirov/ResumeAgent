@@ -1,8 +1,10 @@
 import logging
 
+from app.domain.generation.certifications import select_reference_certifications
 from app.domain.generation.resume_sections import (
     extract_master_section,
     extract_profile_header,
+    omit_template_section,
 )
 from app.domain.pipeline.models import (
     ContentRewriteInput,
@@ -97,13 +99,23 @@ class PipelineCoordinator:
             input_data.master_resume,
             "Professional Background",
         )
+        reference_certifications = select_reference_certifications(
+            input_data.master_resume,
+            input_data.job_description,
+            job_analysis=analysis.analysis,
+            technical_requirements=technical.requirements,
+        )
+        resume_template = input_data.resume_template
+        if not reference_certifications.strip():
+            resume_template = omit_template_section(resume_template, "Certifications")
         final = await self._resume_generation.execute(
             ResumeGenerationInput(
-                resume_template=input_data.resume_template,
+                resume_template=resume_template,
                 master_resume=input_data.master_resume,
                 profile_header=profile_header,
                 reference_education=reference_education,
                 reference_background=reference_background,
+                reference_certifications=reference_certifications,
                 selected_experience=rewritten.selected_experience,
                 selected_projects=rewritten.selected_projects,
                 selected_skills=rewritten.selected_skills,

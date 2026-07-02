@@ -1,3 +1,4 @@
+from app.domain.generation.experience_formatter import compact_all_bullets
 from app.domain.generation.policies import parse_rewritten_content
 from app.domain.pipeline.models import ContentRewriteInput, ContentRewriteOutput
 from app.services.openai_service import OpenAIService
@@ -21,7 +22,7 @@ class ContentRewriteService:
         rewritten_content = await self._openai.generate(system_prompt, user_prompt)
         parsed = parse_rewritten_content(rewritten_content)
         return ContentRewriteOutput(
-            selected_experience=parsed.selected_experience,
-            selected_projects=parsed.selected_projects,
+            selected_experience=compact_all_bullets(parsed.selected_experience),
+            selected_projects=compact_all_bullets(parsed.selected_projects),
             selected_skills=parsed.selected_skills,
         )

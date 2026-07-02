@@ -2,6 +2,7 @@ import re
 
 from app.domain.errors import ValidationError
 from app.domain.generation.models import ParsedRewrittenContent
+from app.domain.generation.experience_formatter import format_generated_resume
 from app.domain.generation.resume_sections import (
     apply_profile_header,
     extract_profile_header,
@@ -42,6 +43,7 @@ _HEADING_ALIASES: dict[str, tuple[str, ...]] = {
     "professional summary": ("## professional summary", "## summary"),
     "professional experience": ("## professional experience", "## experience"),
     "skills & abilities": ("## skills & abilities", "## skills"),
+    "certifications": ("## certifications",),
     "professional background": ("## professional background", "## background"),
     "education": ("## education",),
 }
@@ -72,6 +74,7 @@ def finalize_generated_resume(
 ) -> str:
     header = profile_header or extract_profile_header(master_resume)
     merged = apply_profile_header(markdown, header)
+    merged = format_generated_resume(merged, master_resume)
     try:
         reject_generic_placeholders(merged)
     except ValueError as exc:

@@ -93,14 +93,16 @@ Skills: {selected_skills}
             profile_header="# Jane Doe\n\nChicago | jane@example.com",
             reference_education="- BS Computer Science",
             reference_background="- Prior analyst role",
+            reference_certifications="",
             selected_experience="- Built Python APIs with FastAPI at Acme Corp",
             selected_projects="",
             selected_skills="**Backend:** Python, FastAPI",
         )
     )
 
-    assert result.markdown.startswith("# Jane Doe")
-    assert "Chicago | jane@example.com" in result.markdown
+    assert '<h1 class="resume-name">Jane Doe</h1>' in result.markdown
+    assert "Chicago" in result.markdown
+    assert "jane@example.com" in result.markdown
     assert "## Professional Summary" in result.markdown
     openai.generate.assert_awaited_once()
 
@@ -143,6 +145,7 @@ Skills: {selected_skills}
                 profile_header="# Jane Doe\n\nChicago | jane@example.com",
                 reference_education="- BS Computer Science",
                 reference_background="",
+                reference_certifications="",
                 selected_experience="- Built Python APIs with FastAPI at Acme Corp",
                 selected_projects="",
                 selected_skills="**Backend:** Python, FastAPI",

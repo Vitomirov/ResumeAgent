@@ -23,6 +23,7 @@ async def test_resume_generation_service_delegates_to_generator() -> None:
             profile_header="# Jane Doe\n\njane@example.com",
             reference_education="- BS",
             reference_background="- Analyst",
+            reference_certifications="",
             selected_experience="- Built APIs",
             selected_projects="- Side project",
             selected_skills="- Python",
