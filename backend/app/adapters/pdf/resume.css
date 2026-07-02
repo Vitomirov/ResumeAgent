@@ -1,0 +1,115 @@
+@page {
+  size: A4;
+  margin: 12mm 14mm;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  line-height: 1.35;
+  color: #1a1a1a;
+}
+
+body {
+  margin: 0;
+}
+
+main.resume {
+  width: 100%;
+}
+
+main.resume > h1:first-of-type {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 22pt;
+  font-weight: 700;
+  color: #3d7a89;
+  margin: 0 0 2pt;
+  padding-bottom: 4pt;
+  border-bottom: 1pt solid #3d7a89;
+}
+
+main.resume > p:first-of-type {
+  margin: 6pt 0 10pt;
+  font-size: 9.5pt;
+  color: #333333;
+}
+
+h2 {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 12pt;
+  font-weight: 700;
+  color: #3d7a89;
+  text-transform: none;
+  letter-spacing: 0;
+  border-bottom: none;
+  margin: 12pt 0 5pt;
+  padding-bottom: 0;
+}
+
+h3 {
+  font-size: 10.5pt;
+  font-weight: 700;
+  margin: 8pt 0 3pt;
+}
+
+p {
+  margin: 0 0 4pt;
+}
+
+ul,
+ol {
+  margin: 0 0 6pt;
+  padding-left: 14pt;
+}
+
+li {
+  margin-bottom: 2pt;
+}
+
+li > p {
+  margin: 0;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: #3d7a89;
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 0.5pt solid #cccccc;
+  margin: 8pt 0;
+}
+
+.entry-header,
+.entry-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12pt;
+  margin-bottom: 2pt;
+}
+
+.entry-title {
+  font-weight: 700;
+}
+
+.entry-links,
+.entry-dates {
+  white-space: nowrap;
+  font-size: 9.5pt;
+}
+
+.entry-meta {
+  font-size: 9.5pt;
+  margin-bottom: 4pt;
+}
+
+main.resume h2 + p strong {
+  display: inline-block;
+  min-width: 7em;
+}

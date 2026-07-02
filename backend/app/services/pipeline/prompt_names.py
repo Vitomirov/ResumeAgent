@@ -1,0 +1,6 @@
+ANALYZE_JOB = "analyze_job"
+EXTRACT_REQUIREMENTS = "extract_requirements"
+EXTRACT_SOFT_SKILLS = "extract_soft_skills"
+MATCH_RESUME = "match_resume"
+REWRITE_RESUME = "rewrite_resume"
+GENERATE_RESUME = "generate_resume"

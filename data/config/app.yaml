@@ -1,0 +1,9 @@
+openai:
+  model: gpt-4o
+
+pdf:
+  page_size: A4
+  margin_mm: 20
+
+tailor:
+  prompt_version: "1.0"
